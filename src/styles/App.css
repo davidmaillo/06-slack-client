@@ -1,0 +1,93 @@
+/* Global */
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Lato, sans-serif;
+	background: #f8f8f8;
+}
+
+.error {
+	color: tomato;
+	margin-bottom: 10px;
+}
+
+/* Forms */
+
+input[type='text'],
+input[type='password'] {
+	font-size: 16px;
+	height: 40px;
+	border: 1px solid #ced4da;
+	padding: 10px;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+button.positive {
+	display: block;
+	background: #007a5a;
+	border-color: #007a5a;
+	color: white;
+	font-size: 16px;
+	border-radius: 3px;
+}
+
+button.positive:hover {
+	background: #2eb67d;
+	border-color: #2eb67d;
+}
+
+button {
+	cursor: pointer;
+}
+
+input[type='text'],
+input[type='password'],
+button {
+	outline: none;
+}
+
+.link {
+	text-align: center;
+	display: block;
+	margin-top: 20px;
+	font-size: 14px;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.link a {
+	color: #1264a3;
+}
+
+form .error {
+	display: block;
+	text-align: center;
+	margin-bottom: 0;
+	margin-top: 10px;
+}
+
+/* Cards */
+
+.card {
+	background: white;
+	width: 300px;
+	padding: 30px;
+	box-sizing: border-box;
+	margin: 50px auto 0 auto;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.card input[type='text'],
+.card input[type='password'] {
+	display: block;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.card button[type='submit'] {
+	width: 100%;
+	padding: 10px;
+}
