@@ -1,36 +1,44 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 import './styles/Sidebar.css'
 
 class Sidebar extends Component {
 	// Data
 	state = {
 		workspace: 'Tortuga Coders',
-		channels: [
-			{
-				_id: '1',
-				name: 'general',
-				active: true
-			},
-			{
-				_id: '2',
-				name: 'announcements'
-			},
-			{
-				_id: '3',
-				name: 'fun'
-			},
-			{
-				_id: '4',
-				name: 'random'
-			},
-			{
-				_id: '5',
-				name: 'coding'
-			}
-		]
+		channels: []
 	}
+
+	// 	{
+	// 	_id: '1',
+	// 	name: 'general',
+	// 	active: true
+	// },
+	// {
+	// 	_id: '2',
+	// 	name: 'announcements'
+	// },
+	// {
+	// 	_id: '3',
+	// 	name: 'fun'
+	// },
+	// {
+	// 	_id: '4',
+	// 	name: 'random'
+	// },
+	// {
+	// 	_id: '5',
+	// 	name: 'coding'
+	// }
+
 	// Lifecycle
-	componentWillMount() {}
+	componentWillMount() {
+		axios.get(`${process.env.REACT_APP_API}/channels`).then(res => {
+			this.setState({
+				channels: res.data
+			})
+		})
+	}
 	// Methods
 	logout = () => {}
 	selectChannel = () => {}
