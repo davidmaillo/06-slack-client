@@ -41,7 +41,14 @@ class Sidebar extends Component {
 	}
 	// Methods
 	logout = () => {}
-	selectChannel = () => {}
+	selectChannel = id => {
+		let channels = this.state.channels
+		channels.forEach((e, i) => {
+			channels[i].active = false
+			if (e._id == id) channels[i].active = true
+		})
+		this.setState({ channels })
+	}
 	// Render
 	render() {
 		return (
@@ -53,7 +60,7 @@ class Sidebar extends Component {
 							<li
 								key={channel._id}
 								className={channel.active ? 'active' : ''}
-								onClick={() => this.selectChannel(channel._id)}
+								onClick={e => this.selectChannel(channel._id)}
 							>
 								# {channel.name}
 							</li>
