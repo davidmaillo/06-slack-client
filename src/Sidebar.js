@@ -34,9 +34,9 @@ class Sidebar extends Component {
 	// Lifecycle
 	componentWillMount() {
 		axios.get(`${process.env.REACT_APP_API}/channels`).then(res => {
-			this.setState({
-				channels: res.data
-			})
+			let channels = res.data
+			channels[0].active = true
+			this.setState({ channels })
 		})
 	}
 	// Methods
