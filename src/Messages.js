@@ -14,6 +14,25 @@ class Content extends Component {
 		messages: []
 	}
 
+	componentWillReceiveProps = props => {
+		if (props.currentChannel) {
+			axios
+				.get(
+					`${process.env.REACT_APP_API}/messages?channel=${props.currentChannel}`,
+					{
+						headers: {
+							Authorization: `Bearer ${localStorage.getItem('token')}`
+						}
+					}
+				)
+				.then(res => {
+					this.setState({ messages: res.data })
+					let content = document.querySelector('#content')
+					content.scrollTop = content.scrollHeight
+				})
+		}
+	}
+
 	// Methods
 	changeText = e => {
 		let newMessage = this.state.newMessage
@@ -25,21 +44,6 @@ class Content extends Component {
 	}
 	// Render
 	render() {
-		if (this.props.currentChannel) {
-			axios
-				.get(
-					`${process.env.REACT_APP_API}/messages?channel=${this.props.currentChannel}`,
-					{
-						headers: {
-							Authorization: `Bearer ${localStorage.getItem('token')}`
-						}
-					}
-				)
-				.then(res => {
-					this.setState({ messages: res.data })
-				})
-		}
-
 		return (
 			<div id="messages">
 				<div id="content">
