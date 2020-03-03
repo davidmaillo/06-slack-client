@@ -9,38 +9,19 @@ class Sidebar extends Component {
 		channels: []
 	}
 
-	// 	{
-	// 	_id: '1',
-	// 	name: 'general',
-	// 	active: true
-	// },
-	// {
-	// 	_id: '2',
-	// 	name: 'announcements'
-	// },
-	// {
-	// 	_id: '3',
-	// 	name: 'fun'
-	// },
-	// {
-	// 	_id: '4',
-	// 	name: 'random'
-	// },
-	// {
-	// 	_id: '5',
-	// 	name: 'coding'
-	// }
-
 	// Lifecycle
 	componentWillMount() {
 		axios.get(`${process.env.REACT_APP_API}/channels`).then(res => {
 			let channels = res.data
+
+			// Make first channel active
 			channels[0].active = true
+			this.props.setChannel(channels[0]._id)
+
 			this.setState({ channels })
 		})
 	}
 	// Methods
-	logout = () => {}
 	selectChannel = id => {
 		let channels = this.state.channels
 		channels.forEach((e, i) => {
@@ -48,7 +29,15 @@ class Sidebar extends Component {
 			if (e._id == id) channels[i].active = true
 		})
 		this.setState({ channels })
+		this.props.setChannel(id)
 	}
+
+	logout = () => {
+		localStorage.removeItem('token')
+		window.location.href = '/login'
+		// Redirect to /
+	}
+
 	// Render
 	render() {
 		return (
